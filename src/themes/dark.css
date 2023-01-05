@@ -1,0 +1,40 @@
+:root {
+  --px-border: 2px;
+
+  --background: #FFFFFF;
+  --titlebar: #e7e7e780;
+  --titlebar-border: #E5E5E5;
+  --titlebar-fg: #1A1A1A;
+  --titlebar-button-fg: #1A1A1A;
+  --titlebar-button-hover: #E5E5E5;
+
+  --titlebar-menu: #e7e7e780;
+  --titlebar-menu-border: #E5E5E5;
+  --titlebar-menu-shadow: rgba(100, 100, 111, 0.4);
+  --titlebar-menu-devider: #E5E5E5;
+
+  --titlebar-menu-button-fg: #1A1A1A;
+  --titlebar-menu-button-hover: #E5E5E5;
+
+  --content-scrollbar: #e7e7e780;
+  --content-scrollbar-border: #E5E5E5;
+  --content-scrollbar-thumb: #E5E5E5;
+  --content-scrollbar-thumb-hover: #E5E5E5;
+
+  --content-info: #CCCCCC;
+  --content-text: #707070;
+  --content-title: #707070;
+
+  --content-toolbar: rgb(219, 219, 219);
+  --content-toolbar-fg: white;
+  --content-toolbar-border: #E5E5E5;
+
+  --content-toolbar-button-fg: #1A1A1A;
+  --content-toolbar-button-hover: #f3f3f3;
+
+  --content-general-empty: #f3f3f3bb;
+  --content-general-fg-empty: #c4c4c4;
+  --content-general-empty-border: #E5E5E5;
+  --content-general-border-hover: #E5E5E5;
+  --content-general-border-active: #0099ff;
+}

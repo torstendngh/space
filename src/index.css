@@ -1,0 +1,311 @@
+/* General */
+
+@font-face {
+  font-family: "andika-regular";
+  src: url("./fonts/andika/Andika-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "andika-bold";
+  src: url("./fonts/andika/Andika-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "andika-italic";
+  src: url("./fonts/andika/Andika-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "andika-bold-italic";
+  src: url("./fonts/andika/Andika-BoldItalic.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: andika-regular;
+}
+
+button {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+html {
+  background-color: transparent;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: transparent;
+}
+
+/* Titlebar */
+
+#titlebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  backdrop-filter: blur(16px);
+
+  height: 42px;
+
+  border-bottom: var(--px-border) solid var(--titlebar-border);
+
+  background-color: var(--titlebar);
+  z-index: 1000;
+}
+
+#titlebar-menu {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1000;
+  position: absolute;
+  gap: 2px;
+  top: 50px;
+  left: 8px;
+  background-color: var(--titlebar-menu);
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0;
+  backdrop-filter: blur(16px);
+  border-radius: 6px;
+  box-shadow: transparent 0px 0px 0px 0px;
+  border: var(--px-border) solid var(--titlebar-menu-border);
+  transition: visibility 0.4s ease, opacity 0.08s ease, transform 0.08s ease, box-shadow 0.4s ease;
+  transform: translateY(-16px);
+}
+
+.titlebar-menu-visible {
+  box-shadow: var(--titlebar-menu-shadow) 0px 7px 29px 0px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+#titlebar-menu > button {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0 2px;
+  padding-right: 16px;
+  gap: 10px;
+  font-size: 12px;
+  height: 40px;
+  min-width: 140px;
+  color: var(--titlebar-menu-button-fg);
+}
+
+#titlebar-menu > button:hover {
+  background-color: var(--titlebar-menu-button-hover);
+}
+
+#titlebar-menu > button:focus-visible {
+  background-color: var(--titlebar-menu-button-hover);
+}
+
+.titlebar-menu-devider {
+  height: calc(var(--px-border) - 0.1px);
+  margin: 0 0;
+  background-color: var(--titlebar-menu-devider);
+}
+
+.titlebar-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: no-drag;
+
+  height: 42px;
+  width: 42px;
+
+  color: var(--titlebar-button-fg);
+}
+
+.titlebar-button:hover {
+  background-color: var(--titlebar-button-hover);
+}
+
+#titlebar-button-menu > svg {
+  transform: translateY(0);
+  transition: transform 0.08s ease;
+}
+
+#titlebar-button-menu:active > svg {
+  transform: translateY(3px);
+}
+
+.titlebar-grab {
+  flex: 1;
+  user-select: none;
+  -webkit-app-region: drag;
+  z-index: 1000;
+}
+
+.titlebar-title {
+  font-family: andika-regular;
+  font-size: 12px;
+  color: var(--titlebar-fg);
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin-left: 2px;
+}
+
+/* Content */
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+
+  background-color: var(--background);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 0 16px;
+}
+
+/* width */
+#content::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+/* Track */
+#content::-webkit-scrollbar-track {
+  background: var(--content-scrollbar);
+  margin-top: 43px;
+  border-left: var(--px-border) solid var(--content-scrollbar-border);
+}
+
+/* Handle */
+#content::-webkit-scrollbar-thumb {
+  background: var(--content-scrollbar-thumb);
+}
+
+/* Handle on hover */
+#content::-webkit-scrollbar-thumb:hover {
+  background: var(--content-scrollbar-thumb-hover);
+}
+
+#content-container {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 16px;
+  min-width: min(600px, 100%);
+  gap: 4px;
+}
+
+/* Content Toolbar */
+
+.content-toolbar {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--content-toolbar);
+}
+
+.content-toolbar-container {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 2px;
+  transition: opacity 0.16s ease, transform 0.15s ease;
+  transform: scaleY(0);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  gap: 4px;
+  background-color: var(--content-toolbar-fg);
+  height: 44px;
+}
+
+.content-toolbar:hover > .content-toolbar-container {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.content-toolbar-container > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  gap: 4px;
+  color: var(--content-toolbar-button-fg);
+  background-color: var(--content-toolbar-button);
+}
+
+.content-toolbar-container > button:hover {
+  background-color: var(--content-toolbar-button-hover);
+}
+
+/* Content Components */
+
+.component {
+  border: var(--px-border) solid transparent;
+  border-radius: 4px;
+  max-width: 600px;
+}
+
+.component:active, .component:focus {
+  border: var(--px-border) solid var(--content-general-border-active) !important;
+  outline: none;
+}
+
+.component:hover {
+  border: var(--px-border) solid var(--content-general-border-hover);
+}
+
+.component:active {
+  border: var(--px-border) solid var(--content-general-border-active);
+}
+
+.content-title {
+  color: var(--content-title);
+  font-size: 42px;
+  padding: 8px;
+}
+
+.component:empty {
+  border: var(--px-border) solid var(--content-general-empty-border);
+  background-color: var(--content-general-empty) !important;
+  color: var(--content-general-fg-empty) !important;
+}
+
+.content-text:empty::before {
+  content: "Text";
+}
+
+.content-title:empty::before {
+  content: "Title";
+}
+
+.content-text {
+  color: var(--content-text);
+  font-size: 16px;
+  line-height: 2;
+  padding: 8px;
+}
