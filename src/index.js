@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require("fs");
 
 let currentFile;
+let currentFilePath;
 let currentFileName = "temp.json";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -14,6 +15,8 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 400,
+    minHeight: 400,
     frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -28,6 +31,22 @@ const createWindow = () => {
 		mainWindow.webContents.openDevTools();
 	});
 
+  ipcMain.on('saveFile', (event, data) => {
+    fs.writeFile(currentFilePath, data, (err) => {
+      if (err) {
+        console.log(err);
+        dialog.showMessageBox(
+        mainWindow,
+        { message: "Bruh", type: "warning", title: "Error" }
+      );
+      }
+      dialog.showMessageBox(
+        mainWindow,
+        { message: "Notes saved.", type: "info", title: "Saved" } // Saved notification
+      );
+    });
+  });
+
   ipcMain.on('openFile', (event, args) => {
     dialog.showOpenDialog(
       mainWindow,
@@ -40,6 +59,7 @@ const createWindow = () => {
     ).then((result) => {
       if (!result.canceled) {
         currentFileName = result.filePaths[0].toString().split(/(\\|\/)/g).pop();
+        currentFilePath = result.filePaths[0].toString();
       }
       fs.readFile(result.filePaths[0], "utf-8", (err, jsonString) => {
         if (err) {

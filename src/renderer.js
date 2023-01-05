@@ -33,6 +33,10 @@ function getNewDocument() {
   }
 }
 
+function saveDocumentToFile(file) {
+  window.electronAPI.saveFile(file);
+}
+
 function addComponent(type, index, documentObject) {
   const component = {
     "id": crypto.randomUUID(),
@@ -136,7 +140,7 @@ function generateHTML(documentObject) {
     });
 
     document.getElementById("component-" + component.id).oninput = (event) => {
-      defaultDocument.data[index].content = event.target.innerText
+      currentDocument.data[index].content = event.target.innerText
     }
   });
 }
@@ -176,4 +180,9 @@ function toggleMenu() {
 
 document.getElementById("titlebar-menu-open-file").onclick = () => {
   window.electronAPI.openFile();
+}
+
+document.getElementById("titlebar-menu-save").onclick = () => {
+  let sendFile = JSON.stringify(currentDocument, null, 2);
+  saveDocumentToFile(sendFile);
 }
